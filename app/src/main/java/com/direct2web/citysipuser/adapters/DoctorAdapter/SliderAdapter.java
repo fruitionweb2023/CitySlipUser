@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.model.DoctorModels.Slider;
+import com.direct2web.citysipuser.utils.Api;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -17,10 +18,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
     // list for storing urls of images.
     List<Slider> mSliderItems;
+    OnItemClickListner itemClicked;
 
     // Constructor
-    public SliderAdapter(Context context, List<Slider> sliderDataArrayList) {
+    public SliderAdapter(Context context, List<Slider> sliderDataArrayList, OnItemClickListner itemClicked) {
         this.mSliderItems = sliderDataArrayList;
+        this.itemClicked = itemClicked;
     }
 
     // We are inflating the slider_layout
@@ -38,31 +41,26 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         final Slider sliderItem = mSliderItems.get(position);
 
-        // Glide is use to load image
-        // from url in your imageview.
         Glide.with(viewHolder.itemView)
-                .load(sliderItem.getImage())
+                .load(Api.imageUrl + sliderItem.getImage())
                 .fitCenter()
                 .into(viewHolder.imageViewBackground);
-    }
 
-    // this method will return
-    // the count of our list.
+        viewHolder.itemView.setOnClickListener(view -> itemClicked.onClicked(position));
+    }
     @Override
     public int getCount() {
         return mSliderItems.size();
     }
 
     static class SliderAdapterViewHolder extends SliderViewAdapter.ViewHolder {
-        // Adapter class for initializing
-        // the views of our slider view.
         View itemView;
         ImageView imageViewBackground;
-
         public SliderAdapterViewHolder(View itemView) {
             super(itemView);
             imageViewBackground = itemView.findViewById(R.id.myImage);
             this.itemView = itemView;
+
         }
     }
 
@@ -70,5 +68,9 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         this.mSliderItems = sliderList;
         notifyDataSetChanged();
 
+    }
+
+    public interface OnItemClickListner{
+        public void onClicked(int postion);
     }
 }

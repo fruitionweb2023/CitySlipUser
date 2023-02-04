@@ -1,12 +1,11 @@
-package com.direct2web.citysipuser.adapters.DoctorAdapter;
+package com.direct2web.citysipuser.model.DoctorModels;
 
-import com.direct2web.citysipuser.model.DoctorModels.Slider;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResponseHomeScreen {
+public class ResponseDoctorImageSlider {
 
     @SerializedName("error")
     @Expose
@@ -14,7 +13,7 @@ public class ResponseHomeScreen {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("slider")
+    @SerializedName("slider_list")
     @Expose
     private List<Slider> slider = null;
 

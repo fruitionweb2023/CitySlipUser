@@ -11,12 +11,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.direct2web.citysipuser.R;
-import com.direct2web.citysipuser.adapters.DoctorAdapter.SliderImageListAdapter;
 import com.direct2web.citysipuser.adapters.InsurenceAdapter.InsurenceAgentListadapter;
-import com.direct2web.citysipuser.adapters.InsurenceAdapter.InsurenceListAdapter;
-import com.direct2web.citysipuser.adapters.InsurenceAdapter.InsurenceNearbyListadapter;
 import com.direct2web.citysipuser.databinding.ActivityInsurenceAgentsDetailsBinding;
-import com.direct2web.citysipuser.model.Insurence.InsurenceList.ResponseInsurenceList;
 import com.direct2web.citysipuser.model.Insurence.InsurenceServiceWiseAgent.Agent;
 import com.direct2web.citysipuser.model.Insurence.InsurenceServiceWiseAgent.ResponseInsurenceServiceWiseAgent;
 import com.direct2web.citysipuser.utils.Api;

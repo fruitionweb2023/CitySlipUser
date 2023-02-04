@@ -7,11 +7,33 @@ public class Slider {
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("image")
+    @SerializedName("slider_image")
     @Expose
     private String image;
 
+    @SerializedName("slider_cat_id")
+    @Expose
+    private String sliderCatId;
 
+    @SerializedName("redirect_id")
+    @Expose
+    private String redirectId;
+
+    public String getSliderCatId() {
+        return sliderCatId;
+    }
+
+    public void setSliderCatId(String sliderCatId) {
+        this.sliderCatId = sliderCatId;
+    }
+
+    public String getRedirectId() {
+        return redirectId;
+    }
+
+    public void setRedirectId(String redirectId) {
+        this.redirectId = redirectId;
+    }
 
     public String getId() {
         return id;

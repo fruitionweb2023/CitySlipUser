@@ -1,6 +1,6 @@
 package com.direct2web.citysipuser.utils;
 
-import com.direct2web.citysipuser.adapters.DoctorAdapter.ResponseHomeScreen;
+import com.direct2web.citysipuser.model.DoctorModels.ResponseDoctorImageSlider;
 import com.direct2web.citysipuser.model.DoctorModels.Account.ResponseDoctorFavouriteHospital;
 import com.direct2web.citysipuser.adapters.RestaurentAdapter.Account.ResponseUserDetails;
 import com.direct2web.citysipuser.adapters.RestaurentAdapter.Account.ResponseUserDetailsSave;
@@ -836,10 +836,10 @@ public interface Api {
 
 
 
-    @POST("get_slider.php")
+    @POST("doctor/user_side/slider_list.php")
     @FormUrlEncoded
-    Call<ResponseHomeScreen> getSliderList(@Header("Authorization") String authHeader,
-                                           @Field("accesskey") String accesskey,
-                                           @Field("cat_id") String cat_id);
+    Call<ResponseDoctorImageSlider> getSliderList(@Header("Authorization") String authHeader,
+                                                  @Field("accesskey") String accesskey,
+                                                  @Field("cat_id") String cat_id);
 }
 

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.DoctorHospitalList.DoctorHospitalListAdapter;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.DoctorHospitalList.DoctorHospitalNearbyListadapter;
-import com.direct2web.citysipuser.adapters.DoctorAdapter.ResponseHomeScreen;
+import com.direct2web.citysipuser.model.DoctorModels.ResponseDoctorImageSlider;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.SliderAdapter;
 import com.direct2web.citysipuser.databinding.ActivityDoctorDashboardBinding;
 import com.direct2web.citysipuser.model.DoctorModels.HospitalList.NearBy;
@@ -32,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DoctorDashboardActivity extends AppCompatActivity implements DoctorHospitalListAdapter.OnItemClickListner, DoctorHospitalNearbyListadapter.OnItemClickListnerNearBy {
+public class DoctorDashboardActivity extends AppCompatActivity implements DoctorHospitalListAdapter.OnItemClickListner, DoctorHospitalNearbyListadapter.OnItemClickListnerNearBy, SliderAdapter.OnItemClickListner {
 
     ActivityDoctorDashboardBinding binding;
     SessionManager sessionManager;
@@ -64,7 +64,7 @@ public class DoctorDashboardActivity extends AppCompatActivity implements Doctor
 
         getRestaurentDetails(sessionManager.getBusinessType());
 
-        sliderAdapter = new SliderAdapter(this, sliderDataArrayList);
+        sliderAdapter = new SliderAdapter(this, sliderDataArrayList,this);
         binding.slider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
         binding.slider.setSliderAdapter(sliderAdapter);
         binding.slider.setScrollTimeInSec(4);
@@ -194,12 +194,12 @@ public class DoctorDashboardActivity extends AppCompatActivity implements Doctor
 
         Api api = RetrofitClient.getClient().create(Api.class);
 
-        Call<ResponseHomeScreen> call = api.getSliderList("Bearer " + WS_URL_PARAMS.createJWT(WS_URL_PARAMS.issuer, WS_URL_PARAMS.subject),
+        Call<ResponseDoctorImageSlider> call = api.getSliderList("Bearer " + WS_URL_PARAMS.createJWT(WS_URL_PARAMS.issuer, WS_URL_PARAMS.subject),
                 WS_URL_PARAMS.access_key, catId);
 
-        call.enqueue(new Callback<ResponseHomeScreen>() {
+        call.enqueue(new Callback<ResponseDoctorImageSlider>() {
             @Override
-            public void onResponse(Call<ResponseHomeScreen> call, Response<ResponseHomeScreen> response) {
+            public void onResponse(Call<ResponseDoctorImageSlider> call, Response<ResponseDoctorImageSlider> response) {
 
                 Log.e("responseSlider", new Gson().toJson(response.body()));
 
@@ -227,7 +227,7 @@ public class DoctorDashboardActivity extends AppCompatActivity implements Doctor
             }
 
             @Override
-            public void onFailure(Call<ResponseHomeScreen> call, Throwable t) {
+            public void onFailure(Call<ResponseDoctorImageSlider> call, Throwable t) {
 
                 if (pd.isShowing()) {
                     pd.dismiss();
@@ -251,6 +251,13 @@ public class DoctorDashboardActivity extends AppCompatActivity implements Doctor
     public void onNearByItemClicked(int postion) {
         Intent i = new Intent(DoctorDashboardActivity.this, DoctorHospitalDetailsActivity.class);
         i.putExtra("business_id", nearByList.get(postion).getId());
+        startActivity(i);
+    }
+
+    @Override
+    public void onClicked(int postion) {
+        Intent i = new Intent(DoctorDashboardActivity.this, DoctorHospitalDetailsActivity.class);
+        i.putExtra("business_id", sliderDataArrayList.get(postion).getRedirectId());
         startActivity(i);
     }
 }

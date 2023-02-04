@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.activities.Doctor.DoctorHospitalDetailsActivity;
-import com.direct2web.citysipuser.adapters.DoctorAdapter.SliderImageListAdapter;
 import com.direct2web.citysipuser.adapters.LawyerAdapter.LawyerListAdapter;
 import com.direct2web.citysipuser.adapters.LawyerAdapter.LawyerNearbyListadapter;
 import com.direct2web.citysipuser.databinding.ActivityLawyerDashboardBinding;
@@ -43,7 +42,6 @@ public class LawyerDashboardActivity extends AppCompatActivity implements Lawyer
     LawyerNearbyListadapter lawyerNearbyListadapter;
     List<Recommended> recommendedList = new ArrayList<>();
     List<NearBy> nearByList = new ArrayList<>();
-    SliderImageListAdapter sliderImageListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +59,8 @@ public class LawyerDashboardActivity extends AppCompatActivity implements Lawyer
         binding.bottomnavigation.bbMenu.setOnClickListener(new BottomButtonClickListner(this, sessionManager));
 
         getRestaurentDetails(sessionManager.getBusinessType());
-        sliderImageListAdapter = new SliderImageListAdapter(this);
-        binding.imageContainer.setAdapter(sliderImageListAdapter);
+      /*  sliderImageListAdapter = new SliderImageListAdapter(this);
+        binding.imageContainer.setAdapter(sliderImageListAdapter);*/
 
     }
 

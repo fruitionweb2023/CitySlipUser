@@ -18,7 +18,6 @@ import com.direct2web.citysipuser.activities.Doctor.DoctorHospitalDetailsActivit
 import com.direct2web.citysipuser.activities.Restaurent.MainActivity;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.DoctorHospitalList.DoctorHospitalListAdapter;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.DoctorHospitalList.DoctorHospitalNearbyListadapter;
-import com.direct2web.citysipuser.adapters.DoctorAdapter.SliderImageListAdapter;
 import com.direct2web.citysipuser.adapters.InsurenceAdapter.InsurenceListAdapter;
 import com.direct2web.citysipuser.adapters.InsurenceAdapter.InsurenceNearbyListadapter;
 import com.direct2web.citysipuser.databinding.ActivityDoctorDashboardBinding;
@@ -56,7 +55,6 @@ public class InsurenceDashboardActivity extends AppCompatActivity implements Ins
     ProgressDialog pd;
     InsurenceListAdapter adapter;
     InsurenceNearbyListadapter insurenceNearbyListadapter;
-    SliderImageListAdapter sliderImageListAdapter;
     List<Service> recommendedList = new ArrayList<>();
     List<Agent> nearByList = new ArrayList<>();
 
@@ -78,8 +76,8 @@ public class InsurenceDashboardActivity extends AppCompatActivity implements Ins
 
         getRestaurentDetails(sessionManager.getBusinessType());
 
-        sliderImageListAdapter = new SliderImageListAdapter(this);
-        binding.imageContainer.setAdapter(sliderImageListAdapter);
+       /* sliderImageListAdapter = new SliderImageListAdapter(this);
+        binding.imageContainer.setAdapter(sliderImageListAdapter);*/
 
         binding.txtFilterBy.setOnClickListener(new View.OnClickListener() {
             @Override
