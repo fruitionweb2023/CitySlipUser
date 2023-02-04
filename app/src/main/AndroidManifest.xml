@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_new_launcher"
+        android:label="@string/app_name"
+        android:preserveLegacyExternalStorage="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_new_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CitySip"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute">
+        <activity
+            android:name=".activities.Restaurent.RestaurentRecommendedListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceFavouriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceMyAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceHelpAndFAQSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceGeneralIssuesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceCustomerCareNumberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceAgentsDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceAppointmentBookedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceMyInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceRatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceReadMoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceReviewSubmitedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Insurance.InsurenceServicesAndReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerAppointmentBookedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerCustomerCareNumberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerFavouriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerGeneralIssuesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerHelpAndFAQSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerHospitalDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerImageactivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerMyAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerMyInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerRatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerReadMoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerReviewSubmitedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerServicesAndReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Lawyer.LawyerSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorHospitalImageactivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorRatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorFavouriteHospitalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorHospitalReadMoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorHospitalDetailsActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="medicaiditpark.com" />
+            </intent-filter>
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                    android:host="medicaiditpark.com" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".activities.Doctor.DoctorDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorCustomerCareNumberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorGeneralIssuesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorHelpAndFAQSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorOffersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorMyAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorMyInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorReviewSubmitedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorServicesAndReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorAppointmentBookedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorPaymentMethodactivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorApplyCouponsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Doctor.DoctorCartActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.ImagePickerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.SettingAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Restaurent.FavouriteRestaurentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CommonActivies.OtpVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CommonActivies.CategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CommonActivies.VerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CommonActivies.IntroRegisterNowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Restaurent.SearchActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.CustomerCareNumberActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.GeneralIssuesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.HelpAndFaqsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.PaymentAndRefundActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.OfferActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.MyAddressActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.MyInformationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.AccountActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.Restaurent.ReviewSubmitedActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.ServiceReviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.OrderStatusActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.OrderConfirmedActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.PaymentMethodActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.ApplyCouponsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.CartActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.RestaurentRatingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.Restaurent.RestaurentImagesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.AboutRestaurentActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.RestaurantDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.LogoutActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.CommonActivies.IntroLoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.CommonActivies.NumberVerificationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.Restaurent.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.CommonActivies.SplashScreenActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="@string/fb_login_protocol_scheme"
+                    tools:ignore="ManifestResource" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/mapkey" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+    </application>
+
+</manifest>
