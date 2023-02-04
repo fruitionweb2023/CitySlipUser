@@ -154,7 +154,7 @@ public class DoctorHospitalDetailsActivity extends AppCompatActivity implements 
             @Override
             public void onResponse(Call<ResponseDoctorHospitalDetails> call, Response<ResponseDoctorHospitalDetails> response) {
 
-                Log.e("responseOrder", new Gson().toJson(response.body()));
+                Log.e("responseHospitalDetails", new Gson().toJson(response.body()));
 
                 if (pd.isShowing()) {
                     pd.dismiss();
@@ -268,26 +268,18 @@ public class DoctorHospitalDetailsActivity extends AppCompatActivity implements 
         binding2.txtRestaurentDescription.setText(recommendedItem.getDescription());
         recyclerView = bottomSheetDialog.findViewById(R.id.rclr_time);
 
-        binding2.txtDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding2.txtDate.setOnClickListener(view -> {
 
-                Calendar calendar = Calendar.getInstance();
-                final int year = calendar.get(Calendar.YEAR);
-                final int month = calendar.get(Calendar.MONTH);
-                final int day = calendar.get(Calendar.DAY_OF_MONTH);
+            Calendar calendar = Calendar.getInstance();
+            final int year = calendar.get(Calendar.YEAR);
+            final int month = calendar.get(Calendar.MONTH);
+            final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                // date picker dialog
-                picker = new DatePickerDialog(DoctorHospitalDetailsActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                binding2.txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            }
-                        }, year, month, day);
-                picker.show();
-            }
-            });
+            // date picker dialog
+            picker = new DatePickerDialog(DoctorHospitalDetailsActivity.this,
+                    (view1, year1, monthOfYear, dayOfMonth) -> binding2.txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year1), year, month, day);
+            picker.show();
+        });
 
 
                 binding2.txtDate.addTextChangedListener(new TextWatcher() {
@@ -315,12 +307,9 @@ public class DoctorHospitalDetailsActivity extends AppCompatActivity implements 
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(binding2.imgDishLogo);
 
-        binding2.btnBookAppointment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendAddToCart(sessionManager.getUserId(),recommendedItem.getId(),binding2.txtDate.getText().toString(),time);
-                bottomSheetDialog.hide();
-            }
+        binding2.btnBookAppointment.setOnClickListener(view -> {
+            sendAddToCart(sessionManager.getUserId(),recommendedItem.getId(),binding2.txtDate.getText().toString(),time);
+            bottomSheetDialog.hide();
         });
 
     }

@@ -59,13 +59,10 @@ public class DoctorHospitalReadMoreActivity extends AppCompatActivity implements
         pd.show();
         getRestaurentDetails(businessId);
 
-        binding.btnReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DoctorHospitalReadMoreActivity.this, DoctorRatingActivity.class);
-                intent.putExtra("business_id",businessId);
-                startActivity(intent);
-            }
+        binding.btnReview.setOnClickListener(view -> {
+            Intent intent = new Intent(DoctorHospitalReadMoreActivity.this, DoctorRatingActivity.class);
+            intent.putExtra("business_id",businessId);
+            startActivity(intent);
         });
     }
 

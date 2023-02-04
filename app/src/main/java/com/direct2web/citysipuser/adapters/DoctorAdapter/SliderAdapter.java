@@ -15,27 +15,20 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 import java.util.List;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder> {
-
-    // list for storing urls of images.
     List<Slider> mSliderItems;
     OnItemClickListner itemClicked;
 
-    // Constructor
     public SliderAdapter(Context context, List<Slider> sliderDataArrayList, OnItemClickListner itemClicked) {
         this.mSliderItems = sliderDataArrayList;
         this.itemClicked = itemClicked;
     }
 
-    // We are inflating the slider_layout
-    // inside on Create View Holder method.
     @Override
     public SliderAdapterViewHolder onCreateViewHolder(ViewGroup parent) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_item, null);
         return new SliderAdapterViewHolder(inflate);
     }
 
-    // Inside on bind view holder we will
-    // set data to item of Slider View.
     @Override
     public void onBindViewHolder(SliderAdapterViewHolder viewHolder, final int position) {
 

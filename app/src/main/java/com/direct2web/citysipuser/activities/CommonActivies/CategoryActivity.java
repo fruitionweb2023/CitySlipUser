@@ -64,9 +64,7 @@ public class CategoryActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_category);
 
         checkAndRequestPermissions();
-
         getCategory(city_id);
-
 
     }
 
@@ -91,21 +89,12 @@ public class CategoryActivity extends AppCompatActivity {
                         binding.rclrCategory.setLayoutManager(gridLayoutManager);
                         binding.rclrCategory.setAdapter(adapter);
 
-
                     } else {
-
                         binding.rclrCategory.setVisibility(View.GONE);
-
                     }
-
-
                 } else {
-
                     binding.rclrCategory.setVisibility(View.GONE);
-
                 }
-
-
             }
 
             @Override
@@ -157,43 +146,31 @@ public class CategoryActivity extends AppCompatActivity {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permname)) {
                         showdialog("", "This App needs Location and Storage permission to work without any problems.",
                                 "Yes , Grant permission",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                (dialog, which) -> {
 
-                                        dialog.dismiss();
-                                        checkAndRequestPermissions();
-                                    }
+                                    dialog.dismiss();
+                                    checkAndRequestPermissions();
                                 },
-                                "No, Exit App", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        finish();
-                                    }
+                                "No, Exit App", (dialog, which) -> {
+                                    dialog.dismiss();
+                                    finish();
                                 }, false);
                         break;
                     } else {
                         showdialog("", "You have denied some permission, Allow all permission at [Setting] > [App] > [Permission]",
                                 "Go to Setting",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                (dialog, which) -> {
 
-                                        dialog.dismiss();
-                                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                                Uri.fromParts("package", getPackageName(), null));
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intent);
-                                        finish();
-                                    }
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                            Uri.fromParts("package", getPackageName(), null));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                    finish();
                                 },
-                                "No, Exit App", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        finish();
-                                    }
+                                "No, Exit App", (dialog, which) -> {
+                                    dialog.dismiss();
+                                    finish();
                                 }, false);
                         break;
                     }
@@ -228,13 +205,7 @@ public class CategoryActivity extends AppCompatActivity {
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
 
 
