@@ -35,11 +35,12 @@ public class DoctorCartAdapter extends RecyclerView.Adapter<DoctorCartAdapter.Vi
     List<Cart> cartItems;
     Context context;
     ProgressDialog pd;
-    int remove ;
+    OnDeleteItemClickListner itemDeleteClicked;
 
-    public DoctorCartAdapter(List<Cart> cartItems, Context context) {
+    public DoctorCartAdapter(List<Cart> cartItems, Context context,OnDeleteItemClickListner itemDeleteClicked) {
         this.cartItems = cartItems;
         this.context = context;
+        this.itemDeleteClicked = itemDeleteClicked;
     }
 
     @NonNull
@@ -61,30 +62,8 @@ public class DoctorCartAdapter extends RecyclerView.Adapter<DoctorCartAdapter.Vi
         holder.binding.txtDrName.setText(cart.getDoctorName());
         holder.binding.txtDishDescription.setText(cart.getHospitalName());
 
-        holder.binding.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Are you sure want to delete ?");
-                builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        remove = position;
-                        delete("user_cart",cart.getId());
-                        Toast.makeText(context, "CartId : "+cart.getId(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
+        holder.binding.btnDelete.setOnClickListener(v -> {
+            itemDeleteClicked.onDeleteClicked(position);
         });
     }
 
@@ -104,60 +83,15 @@ public class DoctorCartAdapter extends RecyclerView.Adapter<DoctorCartAdapter.Vi
     }
 
 
-    private void delete(String type, String id) {
 
-        pd = new ProgressDialog(context);
-        pd.setMessage("Please Wait....");
-        pd.setCancelable(false);
-        pd.show();
-
-        Api api = RetrofitClient.getClient().create(Api.class);
-        Call<ResponseDoctorCartItemDelete> call = api.sendDeleteCartItem("Bearer " + WS_URL_PARAMS.createJWT(WS_URL_PARAMS.issuer, WS_URL_PARAMS.subject),
-                WS_URL_PARAMS.access_key,type, id);
-        call.enqueue(new Callback<ResponseDoctorCartItemDelete>() {
-            @Override
-            public void onResponse(Call<ResponseDoctorCartItemDelete> call, Response<ResponseDoctorCartItemDelete> response) {
-
-                Log.e("responseDeleteCart", new Gson().toJson(response.body()));
-
-                if (pd.isShowing()) {
-                    pd.dismiss();
-                }
-                if (response.body() != null && response.isSuccessful()) {
-
-                    if (response.body().getError()) {
-
-                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                    } else {
-
-                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        cartItems.remove(remove);
-                        updateList(cartItems);
-                    }
-
-                } else {
-                    Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseDoctorCartItemDelete> call, Throwable t) {
-
-                if (pd.isShowing()) {
-                    pd.dismiss();
-                }
-                t.printStackTrace();
-                Log.e("errorDelete", t.getMessage());
-            }
-        });
-
-    }
 
     private void updateList(List<Cart> cartItems) {
         this.cartItems=cartItems;
         notifyDataSetChanged();
+    }
+
+    public interface OnDeleteItemClickListner{
+        public void onDeleteClicked(int postion);
     }
 
 }
