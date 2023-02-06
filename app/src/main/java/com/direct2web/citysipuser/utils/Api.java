@@ -1,5 +1,7 @@
 package com.direct2web.citysipuser.utils;
 
+import com.direct2web.citysipuser.model.DoctorModels.DoctorAppointment.ResponManageStatus;
+import com.direct2web.citysipuser.model.DoctorModels.DoctorAppointment.ResponseDoctorAppointment;
 import com.direct2web.citysipuser.model.DoctorModels.ResponseDoctorImageSlider;
 import com.direct2web.citysipuser.model.DoctorModels.Account.ResponseDoctorFavouriteHospital;
 import com.direct2web.citysipuser.adapters.RestaurentAdapter.Account.ResponseUserDetails;
@@ -66,6 +68,8 @@ import com.direct2web.citysipuser.model.LawyerModels.LawyerDetails.Responselawye
 import com.direct2web.citysipuser.model.LawyerModels.ReadMore.LawyerReview;
 import com.direct2web.citysipuser.model.LawyerModels.ReadMore.ResponseLawyerReadMore;
 import com.direct2web.citysipuser.model.LawyerModels.ResponseLawyerSearch;
+import com.direct2web.citysipuser.model.ResponManageSettings;
+import com.direct2web.citysipuser.model.ResponseSettings;
 import com.direct2web.citysipuser.model.RestaurentModels.Account.ResponseAddressList;
 import com.direct2web.citysipuser.model.RestaurentModels.Account.ResponseRestaurentAllOfferList;
 import com.direct2web.citysipuser.model.RestaurentModels.BusignessImagesAndVideos.BusinessImageAndVideo;
@@ -841,5 +845,34 @@ public interface Api {
     Call<ResponseDoctorImageSlider> getSliderList(@Header("Authorization") String authHeader,
                                                   @Field("accesskey") String accesskey,
                                                   @Field("cat_id") String cat_id);
+
+    @POST("doctor/user_side/get-order.php")
+    @FormUrlEncoded
+    Call<ResponseDoctorAppointment> getOrder(@Header("Authorization") String authHeader,
+                                             @Field("accesskey") String accesskey,
+                                             @Field("user_id") String user_id);
+
+    @POST("doctor/user_side/manage_status.php")
+    @FormUrlEncoded
+    Call<ResponManageStatus> getManageStatus(@Header("Authorization") String authHeader,
+                                             @Field("accesskey") String accesskey,
+                                             @Field("type") String type,
+                                             @Field("id") String id,
+                                             @Field("status") String status);
+
+    @POST("user_side/notification_setting.php")
+    @FormUrlEncoded
+    Call<ResponseSettings> getSettings(@Header("Authorization") String authorization,
+                                       @Field("accesskey") String accesskey,
+                                       @Field("user_id") String user_id,
+                                       @Field("cat_id") String cat_id);
+
+    @POST("user_side/manage_setting.php")
+    @FormUrlEncoded
+    Call<ResponManageSettings> updateSettingsStatus(@Header("Authorization") String authorization,
+                                                    @Field("accesskey") String accesskey,
+                                                    @Field("user_id") String user_id,
+                                                    @Field("setting_id") String setting_id,
+                                                    @Field("status") String status);
 }
 

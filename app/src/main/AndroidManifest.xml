@@ -400,6 +400,8 @@
                     tools:ignore="ManifestResource" />
             </intent-filter>
         </activity>
+        <activity android:name="com.direct2web.citysipuser.activities.Doctor.DoctorAppointmentActivity" />
+        <activity android:name="com.direct2web.citysipuser.activities.CommonActivies.SettingActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

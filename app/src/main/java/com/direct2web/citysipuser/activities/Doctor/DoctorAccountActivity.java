@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.direct2web.citysipuser.R;
+import com.direct2web.citysipuser.activities.CommonActivies.SettingActivity;
 import com.direct2web.citysipuser.databinding.ActivityDoctorAccountBinding;
 import com.direct2web.citysipuser.utils.BottomButtonClickListner;
 import com.direct2web.citysipuser.utils.SessionManager;
@@ -35,6 +36,21 @@ public class DoctorAccountActivity extends AppCompatActivity {
         binding.bottomnavigation.bbOrder.setOnClickListener(new BottomButtonClickListner(this, sessionManager));
         binding.bottomnavigation.bbMenu.setOnClickListener(new BottomButtonClickListner(this, sessionManager));
 
+
+
+        binding.txtAppointment.setOnClickListener(view -> {
+
+            Intent intent = new Intent(DoctorAccountActivity.this, DoctorAppointmentActivity.class);
+            startActivity(intent);
+
+        });
+
+        binding.txtSetting.setOnClickListener(view -> {
+
+            Intent intent = new Intent(DoctorAccountActivity.this, SettingActivity.class);
+            startActivity(intent);
+
+        });
 
 
         binding.txtMyInformation.setOnClickListener(view -> {
@@ -75,10 +91,10 @@ public class DoctorAccountActivity extends AppCompatActivity {
 
         binding.txtCitysipMoney.setOnClickListener(view -> Toast.makeText(DoctorAccountActivity.this, "Clicked...", Toast.LENGTH_SHORT).show());
 
-        binding.txtSetting.setOnClickListener(view -> {
+       /* binding.txtSetting.setOnClickListener(view -> {
             Intent intent = new Intent(DoctorAccountActivity.this, DoctorSettingsActivity.class);
             startActivity(intent);
-        });
+        });*/
 
         binding.txtFavouriteRestaurent.setOnClickListener(view -> {
             Intent intent = new Intent(DoctorAccountActivity.this, DoctorFavouriteHospitalActivity.class);
