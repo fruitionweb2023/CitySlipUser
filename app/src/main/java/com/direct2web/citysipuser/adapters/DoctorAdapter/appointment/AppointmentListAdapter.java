@@ -60,18 +60,18 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.binding.txtTime.setText(order.getOrderTime());
         holder.binding.txtPrice.setText(order.getTotalAmount());
         holder.binding.txtNumber.setText(order.getAppointmentNumber());
-        
-        if (order.getStatus().equals("0")) {
+
+       /* if (order.getStatus().equals("0")) {
             holder.binding.btnAccept.setBackgroundResource(R.drawable.button_box_doctor);
             holder.binding.btnAccept.setText("Accept");
+        } else*/
             holder.binding.btnAccept.setTextColor(Color.parseColor("#F8F8F8"));
-        } else if (order.getStatus().equals("1")) {
+      if (order.getStatus().equals("1")) {
             holder.binding.btnAccept.setBackgroundResource(R.drawable.appointment_button_accept);
             holder.binding.btnAccept.setText("Accepted");
             holder.binding.btnAccept.setTextColor(Color.parseColor("#FF0F9D58"));
             holder.binding.imgDelete.setClickable(false);
             holder.binding.btnAccept.setClickable(false);
-
 
         } else if (order.getStatus().equals("2")) {
             holder.binding.btnAccept.setBackgroundResource(R.drawable.appointment_button_regact);
@@ -82,34 +82,28 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
         }
 
-        holder.binding.btnAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               if (!isAcceptClicked) {
-                   status("order_list",order.getId(),"1");
-                   holder.binding.btnAccept.setBackgroundResource(R.drawable.appointment_button_accept);
-                   holder.binding.btnAccept.setText("Accepted");
-                   holder.binding.btnAccept.setTextColor(Color.parseColor("#FF0F9D58"));
-                   isAcceptClicked = true;
-                   holder.binding.imgDelete.setClickable(false);
-               }
-            }
+        holder.binding.btnAccept.setOnClickListener(v -> {
+           if (!isAcceptClicked) {
+               status("order_list",order.getId(),"1");
+               holder.binding.btnAccept.setBackgroundResource(R.drawable.appointment_button_accept);
+               holder.binding.btnAccept.setText("Accepted");
+               holder.binding.btnAccept.setTextColor(Color.parseColor("#FF0F9D58"));
+               isAcceptClicked = true;
+               holder.binding.imgDelete.setClickable(false);
+           }
         });
 
-        holder.binding.imgDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isRejectedClicked) {
-                    status("order_list",order.getId(),"2");
-                    holder.binding.btnAccept.setBackgroundResource(R.drawable.appointment_button_regact);
-                    holder.binding.btnAccept.setText("Rejected");
-                    holder.binding.btnAccept.setTextColor(Color.parseColor("#FFF44336"));
-                    isRejectedClicked = true;
-                    holder.binding.btnAccept.setClickable(false);
-                }
-
+       /* holder.binding.imgDelete.setOnClickListener(v -> {
+            if (!isRejectedClicked) {
+                status("order_list",order.getId(),"2");
+                holder.binding.btnAccept.setBackgroundResource(R.drawable.appointment_button_regact);
+                holder.binding.btnAccept.setText("Rejected");
+                holder.binding.btnAccept.setTextColor(Color.parseColor("#FFF44336"));
+                isRejectedClicked = true;
+                holder.binding.btnAccept.setClickable(false);
             }
-        });
+
+        });*/
 
         orderItemList = order.getOrderItem();
 

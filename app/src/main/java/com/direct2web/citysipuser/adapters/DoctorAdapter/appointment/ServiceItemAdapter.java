@@ -2,6 +2,7 @@ package com.direct2web.citysipuser.adapters.DoctorAdapter.appointment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -44,6 +45,12 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         holder.binding.txtAmount.setText(order.getAmount());
         holder.binding.txtAppointmentDate.setText(order.getAppointmentDate());
         holder.binding.txtAppointmentTime.setText(order.getAppointmentTime());
+
+        if (orderList.isEmpty()) {
+            holder.binding.txtService.setVisibility(View.GONE);
+        } else {
+            holder.binding.txtService.setVisibility(View.VISIBLE);
+        }
 
     }
 

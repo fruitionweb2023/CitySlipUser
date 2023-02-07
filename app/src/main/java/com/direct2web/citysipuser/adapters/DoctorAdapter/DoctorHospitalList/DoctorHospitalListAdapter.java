@@ -46,6 +46,7 @@ public class DoctorHospitalListAdapter extends RecyclerView.Adapter<DoctorHospit
         holder.binding.txtDistance.setText(restaurent.getDistance());
         holder.binding.txtRating.setText(restaurent.getRatingStar());
         holder.binding.txtDistanceTime.setText(restaurent.getDistanceTime());
+        holder.binding.txtRestaurentName.setSelected(true);
         holder.binding.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
