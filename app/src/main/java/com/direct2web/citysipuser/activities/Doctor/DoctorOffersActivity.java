@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.Account.DoctorAllOfferListAdapter;
 import com.direct2web.citysipuser.databinding.ActivityDoctorOffersBinding;
@@ -69,11 +71,20 @@ public class DoctorOffersActivity extends AppCompatActivity {
                 if (response.body() != null && response.isSuccessful()) {
 
                     if (response.body().getError()) {
-
+                        if(response.body().getEmpty()) {
+                            binding.llError.setVisibility(View.VISIBLE);
+                            binding.llMain.setVisibility(View.GONE);
+                            Glide.with(DoctorOffersActivity.this)
+                                    .load(Api.imageUrl + response.body().getErrorImage())
+                                    .fitCenter()
+                                    .into(binding.imgError);
+                        }
                         Toast.makeText(DoctorOffersActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                     } else {
 
+                        binding.llError.setVisibility(View.GONE);
+                        binding.llMain.setVisibility(View.VISIBLE);
                         offerItem = response.body().getOfferList();
 
                         offerListAdapter = new DoctorAllOfferListAdapter(offerItem, DoctorOffersActivity.this);

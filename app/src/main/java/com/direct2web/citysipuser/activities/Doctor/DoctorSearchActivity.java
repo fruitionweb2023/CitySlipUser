@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.Account.DoctorFavouriteHospitalAdapter;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.DoctorSearchHospitalAdapter;
@@ -58,50 +59,10 @@ public class DoctorSearchActivity extends AppCompatActivity {
         binding.bottomnavigation.bbOrder.setOnClickListener(new BottomButtonClickListner(this, sessionManager));
         binding.bottomnavigation.bbMenu.setOnClickListener(new BottomButtonClickListner(this, sessionManager));
 
-
-
-
-
-        binding.editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-                //filter(editable.toString());
-            }
-        });
-
-        binding.imgSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getRestaurentDetails(sessionManager.getBusinessType(),binding.editText.getText().toString());
-               // filter(binding.editText.getText().toString());
-
-            }
-        });
+        getRestaurentDetails(sessionManager.getBusinessType(),"");
+        binding.imgSearch.setOnClickListener(view -> getRestaurentDetails(sessionManager.getBusinessType(),binding.editText.getText().toString()));
 
     }
-
-    /*private void filter(String text) {
-
-        ArrayList<WishListBusiness> filterList = new ArrayList<>();
-        for (WishListBusiness item : businessList) {
-            if (item.getBusinessName().toLowerCase().contains(text.toLowerCase())) {
-                filterList.add(item);
-            }
-        }
-
-        adapter.filterdeList(filterList);
-    }*/
 
     private void getRestaurentDetails(String catId,String keyWord) {
 
@@ -119,11 +80,19 @@ public class DoctorSearchActivity extends AppCompatActivity {
                 if (response.body() != null && response.isSuccessful()) {
 
                     if (response.body().getError()) {
-
+                        if(response.body().getEmpty()) {
+                            binding.llError.setVisibility(View.VISIBLE);
+                            binding.llMain.setVisibility(View.GONE);
+                            Glide.with(DoctorSearchActivity.this)
+                                    .load(Api.imageUrl + response.body().getErrorImage())
+                                    .fitCenter()
+                                    .into(binding.imgError);
+                        }
                         Toast.makeText(DoctorSearchActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                     } else {
-
+                        binding.llError.setVisibility(View.GONE);
+                        binding.llMain.setVisibility(View.VISIBLE);
                         businessList = response.body().getWishListBusiness();
 
                         adapter = new DoctorSearchHospitalAdapter(businessList, DoctorSearchActivity.this);

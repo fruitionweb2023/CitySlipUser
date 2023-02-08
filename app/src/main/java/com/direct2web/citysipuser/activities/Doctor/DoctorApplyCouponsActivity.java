@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.activities.Restaurent.ApplyCouponsActivity;
 import com.direct2web.citysipuser.activities.Restaurent.CartActivity;
@@ -106,11 +108,21 @@ public class DoctorApplyCouponsActivity extends AppCompatActivity implements Doc
                 if (response.body() != null && response.isSuccessful()) {
 
                     if (response.body().getError()) {
+                            if(response.body().getEmpty()) {
+                                binding.llError.setVisibility(View.VISIBLE);
+                                binding.llMain.setVisibility(View.GONE);
+                                Glide.with(DoctorApplyCouponsActivity.this)
+                                        .load(Api.imageUrl + response.body().getErrorImage())
+                                        .fitCenter()
+                                        .into(binding.imgError);
+                            }
 
                         Toast.makeText(DoctorApplyCouponsActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                     } else {
 
+                            binding.llError.setVisibility(View.GONE);
+                            binding.llMain.setVisibility(View.VISIBLE);
                         offerItem = response.body().getOfferList();
 
                         doctorOfferListAdapter = new DoctorOfferListAdapter(offerItem, DoctorApplyCouponsActivity.this,DoctorApplyCouponsActivity.this);

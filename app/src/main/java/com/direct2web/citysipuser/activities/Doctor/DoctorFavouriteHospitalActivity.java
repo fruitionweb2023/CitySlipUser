@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.direct2web.citysipuser.R;
 import com.direct2web.citysipuser.adapters.DoctorAdapter.Account.DoctorFavouriteHospitalAdapter;
 import com.direct2web.citysipuser.model.DoctorModels.Account.ResponseDoctorFavouriteHospital;
@@ -61,6 +63,7 @@ public class DoctorFavouriteHospitalActivity extends AppCompatActivity {
         pd.setMessage("Please Wait...");
         pd.setCancelable(false);
         pd.show();
+
         getRestaurentDetails(sessionManager.getUserId());
 
         binding.editTextSearchView.addTextChangedListener(new TextWatcher() {
@@ -88,7 +91,6 @@ public class DoctorFavouriteHospitalActivity extends AppCompatActivity {
         for (WishListBusiness item : businessList1) {
             if (item.getBusinessName().toLowerCase().contains(text.toLowerCase())) {
                 filterList.add(item);
-
             }
         }
         adapter.filterdeList(filterList);
@@ -113,11 +115,20 @@ public class DoctorFavouriteHospitalActivity extends AppCompatActivity {
                 if (response.body() != null && response.isSuccessful()) {
 
                     if (response.body().getError()) {
-
+                        if(response.body().getEmpty()) {
+                            binding.llError.setVisibility(View.VISIBLE);
+                            binding.rclrFavouriteRestaurent.setVisibility(View.GONE);
+                            Glide.with(DoctorFavouriteHospitalActivity.this)
+                                    .load(Api.imageUrl + response.body().getErrorImage())
+                                    .fitCenter()
+                                    .into(binding.imgError);
+                        }
                         Toast.makeText(DoctorFavouriteHospitalActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                     } else {
 
+                        binding.llError.setVisibility(View.GONE);
+                        binding.rclrFavouriteRestaurent.setVisibility(View.VISIBLE);
                         businessList1 = response.body().getWishListBusiness();
 
                         adapter = new DoctorFavouriteHospitalAdapter(businessList1, DoctorFavouriteHospitalActivity.this);

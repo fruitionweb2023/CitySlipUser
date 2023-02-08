@@ -11,11 +11,35 @@ private Boolean error;
 @SerializedName("message")
 @Expose
 private String message;
+
+    @SerializedName("no_data")
+    @Expose
+    private Boolean isEmpty;
+
+    @SerializedName("no_data_image")
+    @Expose
+    private String errorImage;
 @SerializedName("wish_list_business")
 @Expose
 private List<WishListBusiness> wishListBusiness = null;
 
-public Boolean getError() {
+    public Boolean getEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(Boolean empty) {
+        isEmpty = empty;
+    }
+
+    public String getErrorImage() {
+        return errorImage;
+    }
+
+    public void setErrorImage(String errorImage) {
+        this.errorImage = errorImage;
+    }
+
+    public Boolean getError() {
 return error;
 }
 
